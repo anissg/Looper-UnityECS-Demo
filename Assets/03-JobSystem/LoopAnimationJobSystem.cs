@@ -175,7 +175,7 @@ public class LoopAnimationJobSystem : MonoBehaviour
             materialParamsBatch = new NativeSlice<float>(materialParams, i, loopRenderBatchSize);
             materialParamsBatch.CopyTo(instMatParamsArray);
 
-            mpb.SetFloatArray("_Hue", instMatParamsArray);
+            mpb.SetFloatArray("FloatMPB", instMatParamsArray);
 
             Graphics.DrawMeshInstanced(mesh, 0, material, renderBatchMat, loopRenderBatchSize, mpb);
         }

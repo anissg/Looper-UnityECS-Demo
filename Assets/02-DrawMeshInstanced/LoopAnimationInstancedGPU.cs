@@ -93,7 +93,7 @@ public class LoopAnimationInstancedGPU : MonoBehaviour
             renderBatchMat = cubes.GetRange(i, loopRenderBatchSize).ToArray();
             instMatParamsArray = matParams.GetRange(i, loopRenderBatchSize).ToArray();
 
-            mpb.SetFloatArray("_Hue", instMatParamsArray);
+            mpb.SetFloatArray("FloatMPB", instMatParamsArray);
 
             Graphics.DrawMeshInstanced(mesh, 0, material, renderBatchMat, loopRenderBatchSize, mpb);
         }

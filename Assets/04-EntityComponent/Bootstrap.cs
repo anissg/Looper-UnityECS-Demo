@@ -26,28 +26,28 @@ public class Bootstrap : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
             Instance = this;
     }
 
-    void Start ()
+    void Start()
     {
-        EntityManager entityManager = World.Active.GetOrCreateManager<EntityManager>();
+        EntityManager entityManager = World.Active.EntityManager;
         NativeArray<Entity> entities = new NativeArray<Entity>(cubesPerRing * rings, Allocator.Temp);
-        
+
         var entity = entityManager.CreateEntity(
-            ComponentType.Create<Position>(),
-            ComponentType.Create<Rotation>(),
-            ComponentType.Create<Scale>(),
-            ComponentType.Create<Tint>(),
-            ComponentType.Create<TransformMatrix>(),
-            ComponentType.Create<CustomMeshInstanceRenderer>());
+            ComponentType.ReadWrite<Translation>(),
+            ComponentType.ReadWrite<Rotation>(),
+            ComponentType.ReadWrite<Scale>(),
+            ComponentType.ReadWrite<FloatMaterialPropertyBlock>(),
+            ComponentType.ReadWrite<LocalToWorld>(),
+            ComponentType.ReadWrite<RenderMesh>());
 
         entityManager.Instantiate(entity, entities);
 
         for (int i = 0; i < entities.Length; i++)
         {
-            entityManager.SetSharedComponentData(entities[i], new CustomMeshInstanceRenderer { mesh = mesh, material = material });
+            entityManager.SetSharedComponentData(entities[i], new RenderMesh { mesh = mesh, material = material });
         }
 
         entityManager.DestroyEntity(entity);

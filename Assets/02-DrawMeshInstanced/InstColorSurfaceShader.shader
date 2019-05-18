@@ -1,6 +1,6 @@
 ﻿Shader "Custom/InstColorSurfaceShader" {
 	Properties {
-		_Hue("Hue", Float) = 0.1
+		FloatMPB("FloatMPB", Float) = 0.1
 	}
 	SubShader {
 		Tags { "RenderType"="Opaque" }
@@ -15,7 +15,7 @@
 		};
 		
 		UNITY_INSTANCING_BUFFER_START(Props)
-			half _Hue;
+			half FloatMPB;
 		UNITY_INSTANCING_BUFFER_END(Props)
 		
 		half3 Hue2RGB(half h)
@@ -27,7 +27,7 @@
 
 		void surf (Input IN, inout SurfaceOutputStandard o) 
 		{
-			half3 c = Hue2RGB(UNITY_ACCESS_INSTANCED_PROP(Props, _Hue));
+			half3 c = Hue2RGB(UNITY_ACCESS_INSTANCED_PROP(Props, FloatMPB));
 			o.Albedo = c.rgb;
 			
 			o.Metallic = 0;
