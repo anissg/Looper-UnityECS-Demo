@@ -1,5 +1,5 @@
 # Looper
-![alt text][logo]
+![screenshot01][logo]
 
 [logo]: https://github.com/anissg/Looper/blob/master/Screenshots/Demo.gif "Demo Scene"
 
